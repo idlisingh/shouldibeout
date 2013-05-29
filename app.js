@@ -36,10 +36,20 @@ app.post('/weather', function(req, res) {
 	console.log(QUERY);
 	rest.get(QUERY, function(data, response) {
 		data = JSON.parse(data);
-		var temp = data['data']['current_condition'][0]['temp_C'];
-		console.log(temp);
-		var text = (temp > 18 && temp < 25) ? "Hell Yeah!! Go Out right now" : "Nope. Stay in and read a book.";
-		var returnValue = {temp: temp, should: text};
+		var error = data['data']['error'];
+		console.log(data);
+		console.log("******")
+		console.log(error + " - " + (typeof error))
+		var returnValue = {};
+		if (error == undefined) {
+			var temp = data['data']['current_condition'][0]['temp_C'];
+			console.log(temp);
+			var text = (temp > 18 && temp < 25) ? "Hell Yeah!! Go Out right now" : "Nope. Stay in and read a book.";
+			returnValue = {temp: temp, should: text};
+		} else {
+			returnValue = {temp: "n/a", should: "Error occured"}
+			console.log("Error occured");
+		}
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.write(JSON.stringify(returnValue));
 		res.end();
