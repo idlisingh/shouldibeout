@@ -1,0 +1,13 @@
+{
+  "name": "getmeahandle",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.x.x",
+    "nodeunit": "0.7.4",
+    "node-rest-client": "0.1.1"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  },
+}

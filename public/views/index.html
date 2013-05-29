@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get me a Handle!!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+
+    <link href="public/css/bootstrap.css" rel="stylesheet">
+    <link href="public/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="public/js/main.js"></script>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <label class="brand">Should I Be Outside</label>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right">
+              <li><a href="http://twitter.com/idlisingh" target="_blank">@IdliSingh</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="">
+      <div class="row span12">
+        <div class="pagination-centered ">
+          <input class="input-large search-query" type="text" placeholder="Zip Code" id="zipCode">
+        </div>
+        <div class="row spacer-50">
+          <div class="span4"> </div>
+        </div>
+        <div class="pagination-centered">
+          <button id="get" class="btn btn-primary btn-large " onclick="getWeather()"><font size="13">Should You??</font></button>
+        </div>
+        <div class="row spacer-50">
+          <div class="span4"> </div>
+        </div>
+        <div class="pagination-centered">
+          <label class="control-label" id="shouldResult"><font size="13">Lets find out. Where are you right now??</font></label>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
