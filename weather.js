@@ -19,7 +19,7 @@ function interpret(zipCode, res) {
 		if (error == undefined) {
 			var temp = data['data']['current_condition'][0]['temp_C'];
 			console.log(temp);
-			var text = (temp > 18 && temp < 25) ? "Hell Yeah!! Go Out right now" : "Nope. Stay in and read a book.";
+			var text = (temp > 18 && temp < 30) ? "Hell Yeah!! Go Out right now" : "Nope. Stay in and read a book.";
 			returnValue = {temp: temp, should: text};
 		} else {
 			returnValue = {temp: "n/a", should: "Error occured"}
