@@ -14,6 +14,11 @@
       body {
         padding-top: 60px;
         padding-bottom: 40px;
+        background-color: #A2C1CA;
+      }
+
+      .btn-large-weather {
+        background: #caaba2;
       }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
@@ -32,12 +37,12 @@
         <div class="row spacer-50"></div>
         <div class="row spacer-50"></div>
         <div class="pagination-centered">
-          <button id="get" class="btn btn-primary btn-large " onclick="getWeather()"><font size="12">Interpret</font></button>
+          <button id="get" class="btn btn-large btn-large-weather" onclick="getWeather()">Interpret</button>
         </div>
         <div class="row spacer-50"></div>
         <div class="row spacer-50"></div>
         <div class="pagination-centered">
-          <label class="control-label" id="shouldResult"><font size="13"></font></label>
+          <h2 id="shouldResult"><font color='black'>Lets find out</font></h2>
         </div>
       </div>
     </div>

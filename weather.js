@@ -20,28 +20,33 @@ function interpret(zipCode, res) {
 		if (error == undefined) {	//	No Error found
 			parseWeatherData(weatherData, res);
 		} else {
-			returnValue = {temperature: "n/a", should: "Error occured"};
-			writeResponse(res, returnValue)
+			returnValue = {temperature: "n/a", should: "Error occured", city: "Could not determine!!"};
+			writeResponse(returnValue, res)
 		}
 	});
 }
 
 function parseWeatherData(data, res) {
 	var temperature = data['current_condition'][0]['temp_C'];
-	var text = (temperature > 18 && temperature < 30) ? "Hell Yeah!! Go Out right now" : "Nope. Stay in and read a book.";
+	var text = (temperature > 18 && temperature < 30) ? "Go Out right now" : "Nope. Stay in and read a book.";
 	var weatherQuery = data['request'][0];
 	var queryParam = weatherQuery['query'];
 
 	if (weatherQuery['type'] == 'Zipcode') {
 		rest.get('http://maps.googleapis.com/maps/api/geocode/json?address=' + queryParam + '&sensor=true', function(data, response) {
 			data = JSON.parse(data);
-			city = 'Zeroth value: ' + data['results'][0]['address_components'][1]['long_name'];
-			var returnValue = createResponseWithCity(city, temperature, text);
+			console.log
+			city = data['results'][0]['address_components'][1]['long_name'];
+			country = data['results'][0]['address_components'][3]['long_name'];
+			location = city + ', ' + country;
+			console.log(location)
+			var returnValue = createResponseWithCity(location, temperature, text);
 			writeResponse(returnValue, res);
 		});
 	} else if (weatherQuery['type'] == 'City'){
-		city = queryParam;
-		var returnValue = createResponseWithCity(city, temperature, text);
+		location = queryParam;
+		console.log(location)
+		var returnValue = createResponseWithCity(location, temperature, text);
 		writeResponse(returnValue, res);
 	} else {
 		console.log('error');
