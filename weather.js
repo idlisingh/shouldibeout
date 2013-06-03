@@ -11,23 +11,51 @@ ZIPCODE_PARAM='&q='
 
 function interpret(zipCode, res) {
 	QUERY = URL + API_PARAM + ZIPCODE_PARAM + zipCode;
+
 	rest.get(QUERY, function(data, response) {
 		data = JSON.parse(data);
 		var error = data['data']['error'];
+		var weatherData = data['data']
 		var returnValue = {};
-		if (error == undefined) {
-			var temp = data['data']['current_condition'][0]['temp_C'];
-			console.log(temp);
-			var text = (temp > 18 && temp < 30) ? "Hell Yeah!! Go Out right now" : "Nope. Stay in and read a book.";
-			returnValue = {temp: temp, should: text};
+		if (error == undefined) {	//	No Error found
+			parseWeatherData(weatherData, res);
 		} else {
-			returnValue = {temp: "n/a", should: "Error occured"}
-			console.log("Error occured");
+			returnValue = {temperature: "n/a", should: "Error occured"};
+			writeResponse(res, returnValue)
 		}
-		res.writeHead(200, {'Content-Type': 'text/plain'});
-		res.write(JSON.stringify(returnValue));
-		res.end();
 	});
+}
+
+function parseWeatherData(data, res) {
+	var temperature = data['current_condition'][0]['temp_C'];
+	var text = (temperature > 18 && temperature < 30) ? "Hell Yeah!! Go Out right now" : "Nope. Stay in and read a book.";
+	var weatherQuery = data['request'][0];
+	var queryParam = weatherQuery['query'];
+
+	if (weatherQuery['type'] == 'Zipcode') {
+		rest.get('http://maps.googleapis.com/maps/api/geocode/json?address=' + queryParam + '&sensor=true', function(data, response) {
+			data = JSON.parse(data);
+			city = 'Zeroth value: ' + data['results'][0]['address_components'][1]['long_name'];
+			var returnValue = createResponseWithCity(city, temperature, text);
+			writeResponse(returnValue, res);
+		});
+	} else if (weatherQuery['type'] == 'City'){
+		city = queryParam;
+		var returnValue = createResponseWithCity(city, temperature, text);
+		writeResponse(returnValue, res);
+	} else {
+		console.log('error');
+	}
+}
+
+function createResponseWithCity(city, temperature, text) {
+	return {temperature: temperature, should: text, city: city};
+}
+
+function writeResponse(returnValue, res) {
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.write(JSON.stringify(returnValue));
+	res.end();
 }
 
 exports.interpret = interpret;

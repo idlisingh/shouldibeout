@@ -6,7 +6,7 @@ function getWeather() {
         function(data) {
           var weatherValue = JSON.parse(data);
           $('#shouldResult').fadeOut(300, function() {
-            $('#shouldResult').html('<font size=\"13\">' + weatherValue.should + '</font>');
+            $('#shouldResult').html('<font size=\"10\">' + weatherValue.should + '</font>');
             $('#shouldResult').fadeIn(300);
           });
       });
