@@ -11,7 +11,6 @@ ZIPCODE_PARAM='&q='
 
 function interpret(zipCode, res) {
 	QUERY = URL + API_PARAM + ZIPCODE_PARAM + zipCode;
-	console.log(QUERY);
 	rest.get(QUERY, function(data, response) {
 		data = JSON.parse(data);
 		var error = data['data']['error'];

@@ -12,3 +12,11 @@ function getWeather() {
       });
   }catch (err) {alert(err);}
 }
+
+function textBoxEnter(e) {
+  if (typeof e == 'undefined' && window.event) 
+      { e = window.event; }
+  if (e.keyCode == 13) {
+      getWeather();
+  }
+}
