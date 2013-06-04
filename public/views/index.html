@@ -14,11 +14,21 @@
       body {
         padding-top: 60px;
         padding-bottom: 40px;
-        background-color: #A2C1CA;
+        background-color: #99ffff;
       }
 
       .btn-large-weather {
-        background: #caaba2;
+        background: #8ce35d;
+      }
+      .btn-large-weather:hover {
+        background: #5d8ce3;
+      }
+      .input-large-weather {
+        height: 200px;
+        font-size: 14pt;
+      }
+      input {
+        text-align: center;
       }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
@@ -27,23 +37,21 @@
 
   <body>
 
-    <div class="">
-      <div class="row">
-        <div class="row spacer-50"></div>
-        <div class="row spacer-50"></div>
-        <div class="pagination-centered ">
-          <input class="input-large search-query" type="text" placeholder="Enter the ZipCode Or City Name" id="zipCode" onkeypress="textBoxEnter(event)">
-        </div>
-        <div class="row spacer-50"></div>
-        <div class="row spacer-50"></div>
-        <div class="pagination-centered">
-          <button id="get" class="btn btn-large btn-large-weather" onclick="getWeather()">Interpret</button>
-        </div>
-        <div class="row spacer-50"></div>
-        <div class="row spacer-50"></div>
-        <div class="pagination-centered">
-          <h2 id="shouldResult"><font color='black'>Lets find out</font></h2>
-        </div>
+    <div class="row">
+      <div class="row spacer-50"></div>
+      <div class="pagination-centered ">
+        <input style="font-size:30pt;height:50px;width:400px" type="text" placeholder="Enter ZipCode/City Name" id="zipCode" size="10" onkeypress="textBoxEnter(event)" >
+      </div>
+      <div class="row spacer-50"></div>
+      <div class="row spacer-50"></div>
+      <div class="pagination-centered">
+        <button id="get" class="btn btn-large btn-large-weather" onclick="getWeather()"><font size="10">Interpret</font></button>
+      </div>
+      <div class="row spacer-50"></div>
+      <div class="row spacer-50"></div>
+      <div class="row spacer-50"></div>
+      <div class="pagination-centered">
+        <label id="shouldResult"><font style="color:black;font-size:50pt">Lets find out</font></label>
       </div>
     </div>
 

@@ -18,7 +18,7 @@ function getWeather() {
         function(data) {
           var weatherValue = JSON.parse(data);
           $('#shouldResult').fadeOut(300, function() {
-            $('#shouldResult').html('Location: ' + weatherValue.city + '<br/> ' + weatherValue.should);
+            $('#shouldResult').html('<font style="color:black;font-size:50pt">Location: ' + weatherValue.city + '<br/><br/> ' + weatherValue.should + '</font>');
             $('#shouldResult').fadeIn(300);
           });
       });
